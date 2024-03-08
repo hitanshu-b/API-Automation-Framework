@@ -9,10 +9,9 @@ import org.testng.annotations.Test;
 
 public class CreateBooking extends BaseTest {
 
-
+    @Test
     @Owner("Hitanshu")
     @Description("Verify that the Create Booking with Valid Payload, StatusCode is 200")
-    @Test
     public void testPOSTRequest(){
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING);
         response = RestAssured.given().spec(requestSpecification)

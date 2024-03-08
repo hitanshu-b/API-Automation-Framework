@@ -65,8 +65,8 @@ public class Booking {
                 ", lastname='" + lastname + '\'' +
                 ", totalprice=" + totalprice +
                 ", depositpaid=" + depositpaid +
+                ", bookingdates=" + bookingDates +
                 ", additionalneeds='" + additionalneeds + '\'' +
-                ", bookingDates=" + bookingDates +
                 '}';
     }
 }
