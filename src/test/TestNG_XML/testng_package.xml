@@ -7,7 +7,7 @@
         </packages>
         <groups>
             <run>
-                <include name="P0"></include>
+                <include name="Integration"></include>
             </run>
         </groups>
     </test>

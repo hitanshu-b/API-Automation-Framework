@@ -6,7 +6,9 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.Base.BaseTest;
 import org.example.Endpoints.APIConstants;
+import org.example.Payloads.POJOs.Booking;
 import org.example.Payloads.POJOs.BookingResponse;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.ITestContext;
 
@@ -26,12 +28,13 @@ public class TCIntegration1 extends BaseTest {
 
     @Test(groups = "Integration", priority = 1)
     @Owner("Hitanshu")
-    @Description("TC#Int1 - Verify that Booking can be Created")
+    @Description("TC#Int1 - 1. Verify that Booking can be Created")
     public void testCreateBooking(ITestContext iTestContext){
 //        token = getToken();
 //        System.out.println(token);
 
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING);
+        System.out.println(requestSpecification);
         response = RestAssured.given().spec(requestSpecification)
                 .when().body(payloadManager.createPayloadGSON()).post();
         validatableResponse = response.then().log().all();
@@ -39,6 +42,7 @@ public class TCIntegration1 extends BaseTest {
         // Extracting Booking ID from BookingResponse Class
         // ....
         BookingResponse bookingResponse = payloadManager.bookingResponseJava(response.asString());
+        System.out.println(bookingResponse.getBookingid());
         assertThat(bookingResponse.getBookingid()).isNotNull();
         iTestContext.setAttribute("bookingid",bookingResponse.getBookingid());
         iTestContext.setAttribute("token", getToken());
@@ -48,19 +52,36 @@ public class TCIntegration1 extends BaseTest {
 
     @Test(groups = "Integration", priority = 2)
     @Owner("Hitanshu")
-    @Description("TC#Int2 - Verify Booking by ID")
-    public void testVerifyBookingByID(){
-        assertThat("Jimmy").isEqualTo("Jimmy");
+    @Description("TC#Int1 - 2. Verify Booking by ID")
+    public void testVerifyBookingByID(ITestContext iTestContext){
+        // GET Req code
+        System.out.println(iTestContext.getAttribute("bookingid"));
+        Assert.assertTrue(true);
     }
 
-    @Test(groups="P0")
-    public void testUpdateBookingByID(){
-        token = getToken();
-        System.out.println("testUpdateBookingByID ->" +token);
-        assertThat("Jimmy").isEqualTo("Jimmy");
+    @Test(groups="Integration", priority = 3)
+    @Owner("Hitanshu")
+    @Description("TC#Int1 - 3. Verify Updated Changes in Booking by ID")
+    public void testUpdateBookingByID(ITestContext iTestContext){
+//        token = getToken();
+//        System.out.println("testUpdateBookingByID ->" +token);
+        Integer bookingId = (Integer) iTestContext.getAttribute("bookingid");
+        String token = (String) iTestContext.getAttribute("token");
+        System.out.println("Booking ID: "+bookingId);
+        System.out.println("token"+token);
+
+        requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING + "/" +bookingId);
+        response = RestAssured.given().spec(requestSpecification).cookie("token",token)
+                .when().body(payloadManager.updatePayload()).put();
+
+        validatableResponse = response.then().log().all();
+        Booking booking = payloadManager.bookingResponsePUTReqJava(response.asString());
+        assertThat(booking.getFirstname()).isEqualTo("James");
+        assertThat(booking.getLastname()).isNotNull();
     }
 
-    @Test(groups="P0")
+    @Test(groups="Integration", priority = 4)
+
     public void testDeleteBookingByID(){
         token = getToken();
         System.out.println("testDeleteBookingByID ->" +token);
