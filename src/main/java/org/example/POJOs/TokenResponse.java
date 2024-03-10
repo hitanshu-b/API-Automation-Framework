@@ -1,4 +1,4 @@
-package org.example.Payloads.POJOs;
+package org.example.POJOs;
 
 public class TokenResponse {
 

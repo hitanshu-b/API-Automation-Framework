@@ -1,7 +1,8 @@
 package org.example.Modules;
 
 import com.google.gson.Gson;
-import org.example.Payloads.POJOs.*;
+import org.example.POJOs.*;
+import org.example.POJOs.*;
 
 public class PayloadManager {
 
@@ -74,8 +75,7 @@ public class PayloadManager {
 
     public BookingResponse bookingResponseJava(String responseString){
         gson = new Gson();
-        BookingResponse bookingResponse = gson.fromJson(responseString,BookingResponse.class);
-        return bookingResponse;
+        return gson.fromJson(responseString,BookingResponse.class);
 
     }
 
