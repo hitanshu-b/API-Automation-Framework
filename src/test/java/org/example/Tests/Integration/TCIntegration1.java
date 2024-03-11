@@ -25,6 +25,7 @@ public class TCIntegration1 extends BaseTest {
     // How to pass data/variables from One TC to another
     // Step 4 : Delete the Booking
     String token;
+    String bookingId;
 
     @Test(groups = "Integration", priority = 1)
     @Owner("Hitanshu")
@@ -36,12 +37,11 @@ public class TCIntegration1 extends BaseTest {
                 .when().body(payloadManager.createPayloadGSON()).post();
         validatableResponse = response.then().log().all();
 
+        // direct extraction via jsonPath
+        // bookingId = jsonPath.getString("bookingid");
         // Extracting Booking ID from BookingResponse Class
-
         BookingResponse bookingResponse = payloadManager.bookingResponseJava(response.asString());
         System.out.println(bookingResponse.getBookingid());
-
-        // Assertions to Check bookingid is not null
 
         assertThat(bookingResponse.getBookingid()).isNotNull();
         iTestContext.setAttribute("bookingid",bookingResponse.getBookingid());
@@ -61,12 +61,11 @@ public class TCIntegration1 extends BaseTest {
     @Owner("Hitanshu")
     @Description("TC#Int1 - 3. Verify Updated Changes in Booking by ID")
     public void testUpdateBookingByID(ITestContext iTestContext){
-//        token = getToken();
-//        System.out.println("testUpdateBookingByID ->" +token);
+
         Integer bookingId = (Integer) iTestContext.getAttribute("bookingid");
         String token = (String) iTestContext.getAttribute("token");
         System.out.println("Booking ID: "+bookingId);
-        System.out.println("token"+token);
+        System.out.println("token: "+token);
 
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING + "/" +bookingId);
         response = RestAssured.given().spec(requestSpecification).cookie("token",token)
@@ -79,11 +78,17 @@ public class TCIntegration1 extends BaseTest {
     }
 
     @Test(groups="Integration", priority = 4)
-
-    public void testDeleteBookingByID(){
-        token = getToken();
-        System.out.println("testDeleteBookingByID ->" +token);
-        assertThat("Jimmy").isEqualTo("Jimmy");
+    @Owner("Hitanshu")
+    @Description("TC#INT1 - Step 4: Delete the booking by ID")
+    public void testDeleteBookingByID(ITestContext iTestContext){
+        Integer bookingId = (Integer) iTestContext.getAttribute("bookingid");
+        String token = (String) iTestContext.getAttribute("token");
+        // DELETE Req.
+        System.out.println(iTestContext.getAttribute("bookingid"));
+        requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING + "/" + bookingId).cookie("");
+        validatableResponse = RestAssured.given().spec(requestSpecification)
+                .when().delete().then().log().all();
+        validatableResponse.statusCode(201);
     }
 
 }

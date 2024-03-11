@@ -4,29 +4,29 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="6.896">
+           time="28.631">
     <properties></properties>
 
 
 
             <testcase
-                name="testVerifyBookingByID"
-                time="0.005"
+                name="testCreateBooking"
+                time="23.955"
                 classname="org.example.Tests.Integration.TCIntegration1">
             </testcase>
             <testcase
-                name="testDeleteBookingByID"
-                time="1.108"
+                name="testVerifyBookingByID"
+                time="0.082"
                 classname="org.example.Tests.Integration.TCIntegration1">
             </testcase>
             <testcase
                 name="testUpdateBookingByID"
-                time="1.165"
+                time="2.842"
                 classname="org.example.Tests.Integration.TCIntegration1">
             </testcase>
             <testcase
-                name="testCreateBooking"
-                time="4.618"
+                name="testDeleteBookingByID"
+                time="1.752"
                 classname="org.example.Tests.Integration.TCIntegration1">
             </testcase>
 </testsuite>
