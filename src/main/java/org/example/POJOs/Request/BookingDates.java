@@ -1,4 +1,4 @@
-package org.example.POJOs;
+package org.example.POJOs.Request;
 
 public class BookingDates {
     private String checkin;

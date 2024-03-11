@@ -1,4 +1,4 @@
-package org.example.POJOs;
+package org.example.POJOs.Request;
 
 public class Booking {
 
@@ -6,6 +6,7 @@ public class Booking {
     private String lastname;
     private Integer totalprice;
     private Boolean depositpaid;
+    private BookingDates bookingdates;
     private String additionalneeds;
 
     public String getFirstname() {
@@ -48,14 +49,14 @@ public class Booking {
         this.additionalneeds = additionalneeds;
     }
 
-    private BookingDates bookingDates;
+
 
     public BookingDates getBookingDates() {
-        return bookingDates;
+        return bookingdates;
     }
 
     public void setBookingDates(BookingDates bookingDates) {
-        this.bookingDates = bookingDates;
+        this.bookingdates = bookingDates;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class Booking {
                 ", lastname='" + lastname + '\'' +
                 ", totalprice=" + totalprice +
                 ", depositpaid=" + depositpaid +
-                ", bookingdates=" + bookingDates +
+                ", bookingdates=" + bookingdates +
                 ", additionalneeds='" + additionalneeds + '\'' +
                 '}';
     }

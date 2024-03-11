@@ -2,14 +2,16 @@ package org.example.Modules;
 
 import com.google.gson.Gson;
 import org.example.POJOs.*;
-import org.example.POJOs.*;
+import org.example.POJOs.Request.Booking;
+import org.example.POJOs.Request.BookingDates;
+import org.example.POJOs.Response.BookingResponse;
 
 public class PayloadManager {
 
     Gson gson;
 
     // Java -> JSON
-    public String createPayloadGSON(){
+    public static String createPayloadGSON(){
         Booking booking = new Booking();
 
         booking.setFirstname("Jimmy");
@@ -20,16 +22,24 @@ public class PayloadManager {
         BookingDates bookingdates = new BookingDates();
         bookingdates.setCheckin("2024-02-01");
         bookingdates.setCheckout("2024-05-05");
+
         booking.setBookingDates(bookingdates);
+
         booking.setAdditionalneeds("Breakfast");
 
-        System.out.println(booking);
+        //System.out.println(booking);
 
-        gson = new Gson();
+        Gson gson = new Gson();
         String jsonStringBooking =  gson.toJson(booking);
-        System.out.println(jsonStringBooking);
+
+       // System.out.println(jsonStringBooking);
         return jsonStringBooking;
     }
+
+//    public static void main(String[] args) {
+//        System.out.println(createPayloadGSON());
+//    }
+
 
     public void createPayloadJackson(){
 

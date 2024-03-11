@@ -1,4 +1,6 @@
-package org.example.POJOs;
+package org.example.POJOs.Response;
+
+import org.example.POJOs.Request.Booking;
 
 public class BookingResponse {
     private Integer bookingid;

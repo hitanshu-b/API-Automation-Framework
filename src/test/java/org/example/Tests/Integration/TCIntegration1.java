@@ -5,8 +5,8 @@ import io.qameta.allure.Owner;
 import io.restassured.RestAssured;
 import org.example.Base.BaseTest;
 import org.example.Endpoints.APIConstants;
-import org.example.POJOs.Booking;
-import org.example.POJOs.BookingResponse;
+import org.example.POJOs.Request.Booking;
+import org.example.POJOs.Response.BookingResponse;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.ITestContext;
@@ -33,7 +33,7 @@ public class TCIntegration1 extends BaseTest {
 //        System.out.println(token);
 
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING);
-        System.out.println(requestSpecification);
+     //   System.out.println(requestSpecification);
         response = RestAssured.given().spec(requestSpecification)
                 .when().body(payloadManager.createPayloadGSON()).post();
         validatableResponse = response.then().log().all();
