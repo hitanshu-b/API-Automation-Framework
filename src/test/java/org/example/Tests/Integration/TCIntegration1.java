@@ -15,38 +15,37 @@ import static org.assertj.core.api.Assertions.*;
 
 public class TCIntegration1 extends BaseTest {
 
-    // Get a Token
-    // Create a Booking
-    // Update the Booking with Token and Booking ID
-        // 1. Auth -> API Key
-        // Cookie based Auth
-        // OAuth 2.0 - Method how you can use the OAuth 2.0
+    // Steps Executed:
+    // Step 1 : Get a Token
+    // Step 2 : Create a Booking
+    // Step 3 : Update the Booking with Token and Booking ID
+        // 3.1. Auth -> API Key
+        // 3.2. Cookie based Auth
+        // 3.3. OAuth 2.0 - Method how you can use the OAuth 2.0
     // How to pass data/variables from One TC to another
-    // Delete the Booking
+    // Step 4 : Delete the Booking
     String token;
 
     @Test(groups = "Integration", priority = 1)
     @Owner("Hitanshu")
     @Description("TC#Int1 - 1. Verify that Booking can be Created")
     public void testCreateBooking(ITestContext iTestContext){
-//        token = getToken();
-//        System.out.println(token);
 
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING);
-     //   System.out.println(requestSpecification);
         response = RestAssured.given().spec(requestSpecification)
                 .when().body(payloadManager.createPayloadGSON()).post();
         validatableResponse = response.then().log().all();
 
         // Extracting Booking ID from BookingResponse Class
-        // ....
+
         BookingResponse bookingResponse = payloadManager.bookingResponseJava(response.asString());
         System.out.println(bookingResponse.getBookingid());
+
+        // Assertions to Check bookingid is not null
+
         assertThat(bookingResponse.getBookingid()).isNotNull();
         iTestContext.setAttribute("bookingid",bookingResponse.getBookingid());
         iTestContext.setAttribute("token", getToken());
-
-
     }
 
     @Test(groups = "Integration", priority = 2)
