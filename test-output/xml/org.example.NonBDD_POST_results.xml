@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="APIAutomationFramework"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="10.459">
+    <properties></properties>
+
+
+
+            <testcase
+                name="testNonBDDPOSTRequest"
+                time="10.459"
+                classname="org.example.NonBDD_POST">
+            </testcase>
+</testsuite>
