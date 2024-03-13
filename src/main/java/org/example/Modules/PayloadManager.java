@@ -27,22 +27,9 @@ public class PayloadManager {
 
         booking.setAdditionalneeds("Breakfast");
 
-        //System.out.println(booking);
-
         Gson gson = new Gson();
         String jsonStringBooking =  gson.toJson(booking);
-
-       // System.out.println(jsonStringBooking);
         return jsonStringBooking;
-    }
-
-//    public static void main(String[] args) {
-//        System.out.println(createPayloadGSON());
-//    }
-
-
-    public void createPayloadJackson(){
-
     }
 
     public String updatePayload(){

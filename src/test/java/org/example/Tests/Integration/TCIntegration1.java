@@ -41,7 +41,7 @@ public class TCIntegration1 extends BaseTest {
         // bookingId = jsonPath.getString("bookingid");
         // Extracting Booking ID from BookingResponse Class
         BookingResponse bookingResponse = payloadManager.bookingResponseJava(response.asString());
-        System.out.println(bookingResponse.getBookingid());
+//        System.out.println(bookingResponse.getBookingid());
 
         assertThat(bookingResponse.getBookingid()).isNotNull();
         iTestContext.setAttribute("bookingid",bookingResponse.getBookingid());
@@ -64,9 +64,6 @@ public class TCIntegration1 extends BaseTest {
 
         Integer bookingId = (Integer) iTestContext.getAttribute("bookingid");
         String token = (String) iTestContext.getAttribute("token");
-        System.out.println("Booking ID: "+bookingId);
-        System.out.println("token: "+token);
-
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING + "/" +bookingId);
         response = RestAssured.given().spec(requestSpecification).cookie("token",token)
                 .when().body(payloadManager.updatePayload()).put();
