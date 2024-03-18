@@ -4,14 +4,14 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="10.459">
+           time="7.783">
     <properties></properties>
 
 
 
             <testcase
                 name="testNonBDDPOSTRequest"
-                time="10.459"
+                time="7.783"
                 classname="org.example.NonBDD_POST">
             </testcase>
 </testsuite>
